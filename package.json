@@ -1,0 +1,28 @@
+{
+  "name": "listitapp",
+  "version": "1.0.0",
+  "description": "A shared, realtime shopping list app",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "export NODE_ENV=test && jasmine",
+    "start": "node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adahutchings/ListItApp.git"
+  },
+  "author": "Ada Hutchings",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adahutchings/ListItApp/issues"
+  },
+  "homepage": "https://github.com/adahutchings/ListItApp#readme",
+  "devDependencies": {
+    "jasmine": "^3.0.0",
+    "request": "^2.83.0"
+  },
+  "dependencies": {
+    "dotenv": "^5.0.0",
+    "express": "^4.16.2"
+  }
+}
