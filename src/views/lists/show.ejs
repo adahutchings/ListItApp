@@ -12,6 +12,18 @@
 
             <p><%= list.description %></p>
 
+            <hr>
+            <h3>Items</h3>
+            <ul class="list-group">
+                <% list.items.forEach((item) => { %> 
+                    <li class="list-group-item">
+                        <%= item.name %> <%= item.description %>
+                    </li>
+                <% }) %>
+            </ul>
+
+            <a href="/lists/<%= list.id %>/items/new" class="btn btn-success">New Item</a>
+
             <a href="/lists/<%= list.id %>/edit" class="btn btn-warning">Edit</a>
 
             <form style="display:initial" action="/lists/<%= list.id %>/destroy" method="post">
