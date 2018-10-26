@@ -18,6 +18,9 @@
                 <% list.items.forEach((item) => { %> 
                     <li class="list-group-item">
                         <%= item.name %> <%= item.description %>
+                        <form style="display:initial" action="/lists/<%= list.listId %>/items/<%= item.id %>/destroy" method="post">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
                     </li>
                 <% }) %>
             </ul>
@@ -26,7 +29,7 @@
 
             <a href="/lists/<%= list.id %>/edit" class="btn btn-warning">Edit</a>
 
-            <form style="display:initial" action="/lists/<%= list.id %>/destroy" method="post">
+            <form style="display:initial" action="/lists/<%= item.listId %>/items/<%= item.id %>/destroy" method="post">
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
             

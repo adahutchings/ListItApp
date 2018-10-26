@@ -16,7 +16,28 @@ module.exports = {
             if(err){
                 res.redirect(500, "/items/new");
             } else {
-                res.redirect(303, `/lists/${newItem.listId}/items/${item.id}`);
+                res.redirect(303, `/lists/${newItem.listId}`);
+            }
+        });
+    },
+
+    show(req, res, next) {
+        itemQueries.getItem(req.params.id, (err, item) => {
+            if(err || item == null){
+                console.log(err);
+                res.redirect(404, "/");
+            } else {
+                res.render("items/show", {item});
+            }
+        });
+    },
+
+    destroy(req, res, next) {
+        itemQueries.deleteItem(req, (err, item) => {
+            if(err){
+                res.redirect(500, `/lists/${req.params.listId}/items/${req.params.id}`)
+            } else {
+                res.redirect(303, `/lists/${req.params.listId}`)
             }
         });
     }

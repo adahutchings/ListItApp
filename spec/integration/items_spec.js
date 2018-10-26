@@ -38,7 +38,7 @@ describe("routes : items ", () => {
         });
     });
 
-    describe("GET /lists/:listId/item/new", () => {
+    describe("GET /lists/:listId/items/new", () => {
 
         it("should render a new item field", (done) => {
             request.get(`${base}/${this.list.id}/items/new`, (err, res, body) => {
@@ -49,7 +49,7 @@ describe("routes : items ", () => {
         });
     });
 
-    describe("POST /lists/:listId/item/create", () => {
+    describe("POST /lists/:listId/items/create", () => {
 
         it("should create a new item and redirect", (done) => {
             const options = {
@@ -73,6 +73,38 @@ describe("routes : items ", () => {
                     console.log(err);
                     done();
                 });
+            });
+        });
+    });
+
+    describe("GET /lists/:listId/items/:id", () => {
+
+        it("should render a view with the correct item", (done) => {
+            request.get(`${base}/${this.list.id}/items/${this.item.id}`, (err, res, body) => {
+                expect(err).toBeNull();
+                expect(body).toContain("Litter");
+                done();
+            });
+        });
+    });
+
+
+    describe("POST /lists/:listId/item/:id/destroy", () => {
+
+        it("should delete the item with the associated id", (done) => {
+
+            expect(this.item.id).toBe(1);
+            request.post(`${base}/${this.list.id}/items/${this.item.id}/destroy`, (err, res, body) => {
+                Item.findById(1)
+                .then((item) => {
+                    expect(err).toBeNull();
+                    expect(item).toBeNull();
+                    done();
+                })
+                .catch((err) => {
+                    console.log(err);
+                    done();
+                })
             });
         });
     });
