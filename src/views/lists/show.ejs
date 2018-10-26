@@ -23,10 +23,14 @@
             <ul class="list-group">
                 <% list.items.forEach((item) => { %> 
                     <li class="list-group-item">
+
                         <%= item.name %> <%= item.description %>
+
                         <form style="display:initial" action="/lists/<%= item.listId %>/items/<%= item.id %>/destroy" method="post">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
+
+                        <a href="/lists/<%= item.listId %>/items/<%= item.id %>/edit" class="btn btn-warning">Edit</a>
                     </li>
                 <% }) %>
             </ul>

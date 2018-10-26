@@ -109,5 +109,57 @@ describe("routes : items ", () => {
         });
     });
 
+    describe("GET /lists/:listId/items/:id/edit", () => {
+
+        it("should render a view with an edit item form", (done) => {
+            request.get(`${base}/${this.list.id}/items/${this.item.id}/edit`, (err, res, body) => {
+                expect(err).toBeNull();
+                expect(body).toContain("Edit Item");
+                expect(body).toContain("Litter");
+                done();
+            });
+        });
+    });
+
+    describe("POST /lists/:listId/items/:id/update", () => {
+
+        it("should return a status code 302", (done) => {
+            request.post({
+                url: `${base}/${this.list.id}/items/${this.item.id}/update`,
+                form: {
+                    name: "Scratch Post",
+                    description: "horizontal"
+                }
+            }, (err, res, body) => {
+                expect(res.statusCode).toBe(302);
+                done();
+            });
+        });
+
+        it("should update the given item with the correct values", (done) => {
+
+            const options = {
+                url: `${base}/${this.list.id}/items${this.item.id}/update`,
+                form: {
+                    name: "Scatch Post"
+                }
+            };
+
+            request.post(options, (err, res, body) => {
+                expect(err).toBeNull();
+                
+                Item.findOne({
+                    where: { id: this.item.id}
+                })
+                .then((item) => {
+                    expect(item.name).toBe("Litter");
+                    done();
+                });
+            });
+        });
+
+
+    });
+
 
 });
