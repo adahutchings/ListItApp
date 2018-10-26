@@ -12,13 +12,19 @@
 
             <p><%= list.description %></p>
 
+            <a href="/lists/<%= list.id %>/edit" class="btn btn-warning">Edit</a>
+
+            <form style="display:initial" action="/lists/<%= list.id %>/destroy" method="post">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+
             <hr>
             <h3>Items</h3>
             <ul class="list-group">
                 <% list.items.forEach((item) => { %> 
                     <li class="list-group-item">
                         <%= item.name %> <%= item.description %>
-                        <form style="display:initial" action="/lists/<%= list.listId %>/items/<%= item.id %>/destroy" method="post">
+                        <form style="display:initial" action="/lists/<%= item.listId %>/items/<%= item.id %>/destroy" method="post">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </li>
@@ -27,11 +33,6 @@
 
             <a href="/lists/<%= list.id %>/items/new" class="btn btn-success">New Item</a>
 
-            <a href="/lists/<%= list.id %>/edit" class="btn btn-warning">Edit</a>
-
-            <form style="display:initial" action="/lists/<%= item.listId %>/items/<%= item.id %>/destroy" method="post">
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
             
         </main>
 
