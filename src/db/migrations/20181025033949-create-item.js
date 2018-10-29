@@ -33,6 +33,10 @@ module.exports = {
           key: "id",
           as: "listId"
         },
+      },
+      purchased: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
       }
     });
   },

@@ -10,7 +10,8 @@ module.exports = {
         let newItem = {
             name: req.body.name,
             description: req.body.description,
-            listId: req.params.listId
+            listId: req.params.listId,
+            purchased: false
         };
         itemQueries.addItem(newItem, (err, item) => {
             if(err){
@@ -60,5 +61,6 @@ module.exports = {
                 res.redirect(`/lists/${req.params.listId}`);
             }
         });
-    }
+    },
+
 }
